@@ -4,11 +4,8 @@
  * ------------------------------------------------------------------------------------------ */
 import { listen, MessageConnection } from 'vscode-ws-jsonrpc';
 import {
-    BaseLanguageClient, MonacoWorkspace, 
-    CloseAction, ErrorAction, 
-    MonacoToProtocolConverter,ProtocolToMonacoConverter,
-    MonacoCommands, MonacoLanguages, 
-    ConsoleWindow, createConnection
+    BaseLanguageClient, CloseAction, ErrorAction,
+    createMonacoServices, createConnection
 } from 'monaco-languageclient';
 const ReconnectingWebSocket = require('reconnecting-websocket');
 
@@ -44,19 +41,7 @@ listen({
     }
 });
 
-function createMonacoServices(editor: monaco.editor.IStandaloneCodeEditor, uri:string): BaseLanguageClient.IServices {
-    const m2p = new MonacoToProtocolConverter();
-    const p2m = new ProtocolToMonacoConverter();
-    return {
-        commands: new MonacoCommands(editor),
-        languages: new MonacoLanguages(p2m, m2p),
-        workspace: new MonacoWorkspace(p2m, m2p, uri),
-        window: new ConsoleWindow()
-    }
-}
-
-const services = createMonacoServices(editor, "file:///Users/dietrich/git/xtext-languageserver-example/demo/");
-console.log(services.workspace);
+const services = createMonacoServices(editor, {rootUri: "file:///Users/dietrich/git/xtext-languageserver-example/demo/"});
 function createLanguageClient(connection: MessageConnection): BaseLanguageClient {
     return new BaseLanguageClient({
         name: "Sample Language Client",
