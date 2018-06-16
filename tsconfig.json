@@ -1,25 +1,11 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "inlineSources": false,
-        "declaration": true,
-        "stripInternal": true,
-        "lib": ["es2016", "dom"],
+        "rootDir": "src",
         "outDir": "lib",
-        "strictNullChecks": true,
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
-        "preserveSymlinks": true
+        "baseUrl": ".",
+         "lib": ["es5", "es6", "dom"], 
     },
     "include": [
         "src"
-    ],
-    "files" : [
-        "node_modules/monaco-editor/monaco.d.ts"
     ]
 }

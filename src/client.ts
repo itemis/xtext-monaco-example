@@ -28,7 +28,7 @@ const editor = monaco.editor.create(document.getElementById("container")!, {
 });
 
 // create the web socket
-const webSocket = createWebSocket('ws://localhost:4389/');
+const webSocket = createWebSocket('ws://localhost:8080/lsp');
 console.log(webSocket)
 // listen when the web socket is opened
 listen({
@@ -73,5 +73,5 @@ function createWebSocket(url: string): WebSocket {
         maxRetries: 3,
         debug: true
     };
-    return new ReconnectingWebSocket(url, undefined, socketOptions);
+    return new ReconnectingWebSocket(url, "mydsl", socketOptions);
 }

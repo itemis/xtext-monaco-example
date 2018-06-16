@@ -9,13 +9,14 @@ const buildRoot = path.resolve(__dirname, "lib");
 const monacoEditorPath = 'node_modules/monaco-editor-core/dev/vs';
 
 module.exports = {
+    mode: "development",
     entry: path.resolve(buildRoot, "main.js"),
     output: {
         filename: 'bundle.js',
         path: buildRoot
     },
     module: {
-        noParse: /vscode-languageserver-types/
+        noParse: /reconnecting-websocket/
     },
     resolve: {
         extensions: ['.js'],
